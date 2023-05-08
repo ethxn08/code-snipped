@@ -41,7 +41,7 @@
 .sidebar-content {
   padding: 20px;
 }
-.snippeds {
+.snippets {
   max-height: 45vh;
   width: 100%;
   overflow-y: scroll;
@@ -51,7 +51,7 @@
   padding: 20px;
 }
 
-.create-snipped {
+.create-snippet {
   width: 100%;
   display: flex;
   justify-content: center;

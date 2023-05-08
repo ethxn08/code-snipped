@@ -10,19 +10,19 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-content">
-        <p>Welcome to Code Snippeds.</p>
-        <form className="create-snipped">
-          <input type="text" placeholder="New Snipped Name..." />
-          <button>Create Snipped</button>
+        <p>Welcome to Code Snippets.</p>
+        <form className="create-snippet">
+          <input type="text" placeholder="New Snippet Name..." />
+          <button>Create Snippet</button>
         </form>
         <br />
-        <div className="snippeds">
-          <p>Snipped 1</p>
-          <p>Snipped 2</p>
-          <p>Snipped 3</p>
-          <p>Snipped 3</p>
-          <p>Snipped 3</p>
-          <p>Snipped 3</p>
+        <div className="snippets">
+          <p>Snippet 1</p>
+          <p>Snippet 2</p>
+          <p>Snippet 3</p>
+          <p>Snippet 3</p>
+          <p>Snippet 3</p>
+          <p>Snippet 3</p>
         </div>
       </div>
 
