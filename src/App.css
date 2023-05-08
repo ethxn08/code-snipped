@@ -9,6 +9,19 @@
   align-items: center;
   text-align: center;
   width: 100vw;
+  background-color: #1e1e1e;
+}
+.login {
+  top: 0;
+  left: 0;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100vw;
   background-color: #fff;
 }
 .link {
@@ -49,6 +62,7 @@
 
 .sidebar-footer {
   padding: 20px;
+  margin-bottom: 30px;
 }
 
 .create-snippet {
@@ -63,6 +77,13 @@
   width: 78vw;
   min-height: 100vh;
   margin-left: 20vw;
+  border: 0;
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 @media (max-width: 1900px) {

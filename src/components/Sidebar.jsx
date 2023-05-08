@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { getAuth, signOut } from "firebase/auth";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { app } from "../firebase";
 
 function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
-
+  const auth = getAuth(app);
+  const navigate = useNavigate();
   return (
     <aside className="sidebar">
       <div className="sidebar-content">
@@ -15,6 +14,8 @@ function Sidebar() {
           <input type="text" placeholder="New Snippet Name..." />
           <button>Create Snippet</button>
         </form>
+        <br />
+        <hr />
         <br />
         <div className="snippets">
           <p>Snippet 1</p>
@@ -27,7 +28,18 @@ function Sidebar() {
       </div>
 
       <div className="sidebar-footer">
-        <p>Log Out</p>
+        <p
+          className="link"
+          to="/login"
+          onClick={() =>
+            signOut(auth).then(() => {
+              console.log("El usuario ha cerrado sesión");
+              navigate("/login");
+            })
+          }
+        >
+          Log Out
+        </p>
       </div>
     </aside>
   );
