@@ -5,6 +5,20 @@
   min-height: 100vh;
   display: flex;
   overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100vw;
+  background-color: #fff;
+}
+.link {
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: #1a1a1a;
 }
 .sidebar {
   position: fixed;
