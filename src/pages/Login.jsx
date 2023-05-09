@@ -6,8 +6,10 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 const Login = () => {
+  const firestore = getFirestore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRegister, setIsRegister] = useState(false);
@@ -26,6 +28,10 @@ const Login = () => {
           email,
           password
         );
+        await setDoc(doc(firestore, "users", userCredential.user.uid), {
+          email: userCredential.user.email,
+          snippets: [],
+        });
         console.log(userCredential.user);
         navigate("/");
       } else {
