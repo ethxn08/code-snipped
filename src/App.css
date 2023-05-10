@@ -77,13 +77,45 @@
   width: 78vw;
   min-height: 100vh;
   margin-left: 20vw;
-  border: 0;
 }
-
+.npm__react-simple-code-editor__textarea {
+  border: none;
+  outline: none;
+}
+.npm__react-simple-code-editor__textarea :focus-visible {
+  border: none;
+  outline: none;
+}
 .label-container {
   display: flex;
   flex-direction: column;
   text-align: left;
+}
+.controlButtons {
+  width: 60%;
+  display: flex;
+  justify-content: end;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  z-index: 9999999;
+}
+.saveButton {
+  text-align: center;
+  margin: 5px;
+}
+.removeButton {
+  text-align: center;
+  margin: 5px;
+}
+
+.snippetName {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  color: white;
+  top: 0px;
+  right: 0;
 }
 
 @media (max-width: 1900px) {

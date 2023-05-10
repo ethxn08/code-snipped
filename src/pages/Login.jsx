@@ -32,15 +32,9 @@ const Login = () => {
           email: userCredential.user.email,
           snippets: [],
         });
-        console.log(userCredential.user);
         navigate("/");
       } else {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        console.log(userCredential.user);
+        await signInWithEmailAndPassword(auth, email, password);
         navigate("/");
       }
     } catch (error) {

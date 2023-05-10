@@ -9,6 +9,8 @@ import {
   getFirestore,
   getDoc,
 } from "firebase/firestore";
+import { setCurrentSnippet } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Sidebar() {
   const [userInfo, setUserInfo] = useState();
@@ -19,7 +21,8 @@ function Sidebar() {
   const [snippets, setSnippets] = useState([
     { snippetName: "", snippetCode: "" },
   ]);
-
+  const dispatch = useDispatch();
+  const currentSnippetName = useSelector((state) => state);
   const auth = getAuth(app);
   const db = getFirestore(app);
   const navigate = useNavigate();
@@ -29,7 +32,6 @@ function Sidebar() {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log(docSnap.data());
         setSnippets(docSnap.data().snippets);
       } else {
         console.log("El documento no existe");
@@ -75,15 +77,36 @@ function Sidebar() {
     });
   }, [userInfo]);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      getDocumentData(user);
+      console.log(currentSnippetName);
+    });
+  }, [currentSnippetName]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.createName.value;
+
+    addSnippet(e);
+    form.reset();
+  };
   return (
     <aside className="sidebar">
       <div className="sidebar-content">
         <p>Welcome to Code Snippets.</p>
-        <form className="create-snippet" onSubmit={(e) => addSnippet(e)}>
+        <form
+          className="create-snippet"
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <input
             type="text"
             placeholder="New Snippet Name..."
             onChange={(e) => handleSnippetName(e)}
+            name="createName"
             required
           />
           <button>Create Snippet</button>
@@ -95,7 +118,14 @@ function Sidebar() {
           <h3>Snippets</h3>
           {snippets.map((snippet, i) => {
             return (
-              <p key={`${i}-${snippet.snippetName}`}>{snippet.snippetName}</p>
+              <p
+                key={`${i}-${snippet.snippetName}`}
+                onClick={() => {
+                  dispatch(setCurrentSnippet(snippet.snippetName));
+                }}
+              >
+                {snippet.snippetName}
+              </p>
             );
           })}
         </div>

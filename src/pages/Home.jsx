@@ -19,7 +19,6 @@ const Home = () => {
       const docRef = doc(firestore, "users", user.uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log(docSnap.data());
         setSnippets(docSnap.data().snippets);
       } else {
         console.log("El documento no existe");
